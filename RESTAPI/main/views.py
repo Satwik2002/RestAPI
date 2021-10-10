@@ -16,9 +16,10 @@ def home(request):
         else:
             li = user.objects.get(name=username,password=password)
             if li is not None :
-                return HttpResponse("yayy!!")
+                items = item.objects.all()
+                return render(request, 'main/mainpage.html', { 'items': items})
             else:
-                return HttpResponse('sorry!')
+                return HttpResponse('sorry! try again')
     else:   
         return render(request,'main/index.html')
 
@@ -27,5 +28,5 @@ def showALL(request):
     items = item.objects.all()
     serializer = itemSerializer(items,many=True)
     return JsonResponse(serializer.data, safe=False)
-    
+
 # Create your views here.

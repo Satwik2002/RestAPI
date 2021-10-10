@@ -1,0 +1,32 @@
+{% extends 'main/layout.html' %}
+{% block body %}
+    <div class="container">
+        {% for item in items %}
+        <div class="item">
+            <p>{{ item.name }}</p>
+            <button value="{{item.id}}" onclick="getInfo(this)">get_more_info</button>
+            <form action="/buy">
+                <input type="submit" value="buy">
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+<script>
+    function getInfo(element)
+    {
+        id = parseInt(element.getAttribute('value'));
+        fetch(`http://localhost:8000/getData/${id}`,{
+        mode: 'no-cors',
+        credentials: 'same-origin',
+        method: 'GET',
+        }).then(response => response.json())
+        .then(data => {
+            console.log(data)
+            itemdata = data
+            node = document.createElement('div')
+            node.innerText = itemdata
+            // node.ParentNode.appendChild(node)
+        })
+    }
+</script>
+{% endblock %}
