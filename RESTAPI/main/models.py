@@ -14,6 +14,7 @@ class item(models.Model):
 class user(models.Model):
     name = CharField(max_length=50)
     phone = CharField(max_length=25)
+    password = CharField(max_length=50)
     def __str__(self):
         return self.name
 
