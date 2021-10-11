@@ -21,10 +21,11 @@ var count=0;
         }).then(response => response.json())
         .then(data => {
             let s = `<p> price : ${data.price} <\p> <p> category : ${data.category} </p> <p>quantity : ${data.quantity}</p>`
+            console.log(count)
             if(count%2==0)
-            element.parentNode.lastElementChild.innerHTML = s 
+                element.parentNode.lastElementChild.innerHTML = s 
             else
-            element.parentNode.lastElementChild.innerHTML = ''
+                element.parentNode.lastElementChild.innerHTML = ''
         })
         count++;
     }

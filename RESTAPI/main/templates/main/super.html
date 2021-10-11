@@ -6,6 +6,7 @@
         <p>{{ item.name }}</p>
         <button value="{{item.id}}" onclick="getInfo(this)">get_more_info</button>
         <button><a style="text-decoration:none" href="http://127.0.0.1:8000/update_item/{{item.id}}">Update</a></button>
+        <button><a style="text-decoration:none" href="http://127.0.0.1:8000/delete_item/{{item.id}}">Delete</a></button>
         <p></p>
     </div>
     {% endfor %}

@@ -49,7 +49,7 @@ def createItem(request):
         form = itemForm(request.POST)
         if form.is_valid:
             form.save()
-            s='created item and saved to db'
+            s='created item and saved to db, go to <a href="http://127.0.0.1:8000/super/">super page</a>'
         return HttpResponse(s)
     return render(request, 'main/itemform.html', {'form':itemForm()})
 
@@ -61,8 +61,13 @@ def update_item(request, id):
         form = itemForm(request.POST,instance=items)
         if form.is_valid:
             form.save()
-        return HttpResponse('updated item on db')
+        return HttpResponse('updated item on db, go to <a href="http://127.0.0.1:8000/super/">super page</a>')
     return render(request, 'main/itemform.html', {'form':form})
 
+def delete_item(request, id):
+    itemspec = item.objects.filter(id=id)
+    itemspec.delete()
+    items = item.objects.all()
+    return render(request, 'main/super.html', {'items': items})
 
 
