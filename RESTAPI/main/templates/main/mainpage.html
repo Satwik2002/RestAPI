@@ -15,17 +15,17 @@
     function getInfo(element)
     {
         id = parseInt(element.getAttribute('value'));
-        fetch(`http://localhost:8000/getData/${id}`,{
+        fetch(`http://127.0.0.1:8000/getData/${id}`,{
         mode: 'no-cors',
         credentials: 'same-origin',
         method: 'GET',
         }).then(response => response.json())
         .then(data => {
-            console.log(data)
-            itemdata = data
-            node = document.createElement('div')
-            node.innerText = itemdata
-            // node.ParentNode.appendChild(node)
+            let node = document.createElement('p');
+            let s = `<p> price : ${data.price} <\p> <p> category : ${data.category} </p> <p>quantity : ${data.quantity}</p>`
+            node.innerHTML = s
+            console.log(node)
+            element.parentNode.appendChild(node)    
         })
     }
 </script>

@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from .models import item, user
 from .serializers import itemSerializer
+from main import serializers
 
 def home(request):
     if request.method == 'POST' :
@@ -29,4 +30,11 @@ def showALL(request):
     serializer = itemSerializer(items,many=True)
     return JsonResponse(serializer.data, safe=False)
 
-# Create your views here.
+def getData(request, id):
+    info = item.objects.get(id = id)
+    serializer = itemSerializer(info)
+    return JsonResponse(serializer.data, safe=False)
+
+# def buy(request):
+
+
