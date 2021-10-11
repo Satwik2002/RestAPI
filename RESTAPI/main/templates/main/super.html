@@ -1,0 +1,32 @@
+{% extends 'main/layout.html' %}
+{% block body %}
+<div class="container">
+    {% for item in items %}
+    <div class="item">
+        <p>{{ item.name }}</p>
+        <button value="{{item.id}}" onclick="getInfo(this)">get_more_info</button>
+        <button><a style="text-decoration:none" href="http://127.0.0.1:8000/update_item/{{item.id}}">Update</a></button>
+        <p></p>
+    </div>
+    {% endfor %}
+    <script>
+        var count=0;
+            function getInfo(element)
+            {
+                id = parseInt(element.getAttribute('value'));
+                fetch(`http://127.0.0.1:8000/getData/${id}`,{
+                mode: 'no-cors',
+                credentials: 'same-origin',
+                method: 'GET',
+                }).then(response => response.json())
+                .then(data => {
+                    let s = `<p> price : ${data.price} <\p> <p> category : ${data.category} </p> <p>quantity : ${data.quantity}</p>`
+                    if(count%2==0)
+                    element.parentNode.lastElementChild.innerHTML = s 
+                    else
+                    element.parentNode.lastElementChild.innerHTML = ''
+                })
+                count++;
+            }
+        </script>
+{% endblock %}

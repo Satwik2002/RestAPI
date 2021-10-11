@@ -5,9 +5,6 @@
         <div class="item">
             <p>{{ item.name }}</p>
             <button value="{{item.id}}" onclick="getInfo(this)">get_more_info</button>
-            <form action="/buy">
-                <input type="submit" value="buy">
-            </form>
             <p></p>
         </div>
         {% endfor %}
