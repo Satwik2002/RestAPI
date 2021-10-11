@@ -8,6 +8,7 @@
             <form action="/buy">
                 <input type="submit" value="buy">
             </form>
+            <p></p>
         </div>
         {% endfor %}
     </div>
@@ -21,11 +22,8 @@
         method: 'GET',
         }).then(response => response.json())
         .then(data => {
-            let node = document.createElement('p');
             let s = `<p> price : ${data.price} <\p> <p> category : ${data.category} </p> <p>quantity : ${data.quantity}</p>`
-            node.innerHTML = s
-            console.log(node)
-            element.parentNode.appendChild(node)    
+            element.parentNode.lastElementChild.innerHTML = s   
         })
     }
 </script>
