@@ -18,6 +18,9 @@ class user(models.Model):
     def __str__(self):
         return self.name
 
+class admindata(models.Model):
+    name = CharField(max_length=50)
+    password = CharField(max_length=50)
+    def __str__(self):
+        return self.name
 
-
-# Create your models here.

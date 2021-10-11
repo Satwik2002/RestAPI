@@ -11,23 +11,23 @@
     </div>
 <script>
 var count=0;
-    function getInfo(element)
-    {
-        id = parseInt(element.getAttribute('value'));
-        fetch(`http://127.0.0.1:8000/getData/${id}`,{
-        mode: 'no-cors',
-        credentials: 'same-origin',
-        method: 'GET',
-        }).then(response => response.json())
-        .then(data => {
-            let s = `<p> price : ${data.price} <\p> <p> category : ${data.category} </p> <p>quantity : ${data.quantity}</p>`
-            console.log(count)
-            if(count%2==0)
-                element.parentNode.lastElementChild.innerHTML = s 
-            else
-                element.parentNode.lastElementChild.innerHTML = ''
-        })
-        count++;
-    }
+            function getInfo(element)
+            {
+                count++;
+                id = parseInt(element.getAttribute('value'));
+                fetch(`http://127.0.0.1:8000/getData/${id}`,{
+                mode: 'no-cors',
+                credentials: 'same-origin',
+                method: 'GET',
+                }).then(response => response.json())
+                .then(data => {
+                    let s = `<p> price : ${data.price} <\p> <p> category : ${data.category} </p> <p>quantity : ${data.quantity}</p>`
+                    if(count%2==1)
+                        element.parentNode.lastElementChild.innerHTML = s 
+                    else
+                        element.parentNode.lastElementChild.innerHTML = ''
+                })
+            }
+        </script>
 </script>
 {% endblock %}
